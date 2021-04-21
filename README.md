@@ -32,8 +32,8 @@ Finally, you will need to install [wkhtmltopdf](https://wkhtmltopdf.org/download
 To fun reports with this script you will need 3 environment variables:
 
 | COMPUTE_API_ENDPOINT | The api endpoint of your Compute instance |
-| COMPUTE_ACCESS_KEY | Your username for the instance |
-| COMPUTE_SECRET_KEY | Your password |
+| COMPUTE_ACCESS_KEY   | Your username for the instance            |
+| COMPUTE_SECRET_KEY   | Your password                             |
 
 ## Usage
 ```
