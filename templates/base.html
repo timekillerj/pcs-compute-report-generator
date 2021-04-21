@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+    <title>Compute Report</title>
+    <link rel="stylesheet" href="{{ templates_dir }}/static/css/main.css">
+</head>
+<body>
+    {% include "cover.html" %}
+    {% include "executive_summary.html" %}
+    {% if not comp_only %}
+        {% include "vuln_summary.html" %}
+    {% endif %}
+    {% if not vuln_only %}
+        {% include "comp_summary.html" %}
+    {% endif %}
+    {% if not summary %}
+        {% if not comp_only %}
+            {% include "vuln_details.html" %}
+        {% endif %}
+        {% if not vuln_only %}
+            {% include "comp_details.html" %}
+        {% endif %}
+    {% endif %}
+</body>
+</html>
