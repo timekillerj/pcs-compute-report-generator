@@ -29,6 +29,7 @@ pip install -r requirements.txt
 Finally, you will need to install [wkhtmltopdf](https://wkhtmltopdf.org/downloads.html) for your platform.
 
 ## Usage
+```
 usage: create_report.py [-h] [-t {deployed,registry,ci}] [-f {pdf,html}] [-d] [-s] [-vo] [-co]
 
 Create Compute Reports
@@ -41,3 +42,4 @@ optional arguments:
   -s, --summary                                             Summary only, do not include vulnerability or compliance details
   -vo, --vulnerabilities-only                               Exclude Compliance data from report
   -co, --compliance-only                                    Exclude Vulnerabilities data from report
+```
