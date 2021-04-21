@@ -30,6 +30,13 @@ Finally, you will need to install [wkhtmltopdf](https://wkhtmltopdf.org/download
 
 ## Usage
 ```
+
+Console, Console and Password will read from the following environment variables. 
+COMPUTE_API_ENDPOINT in the form https://<console-address>
+COMPUTE_ACCESS_KEY
+COMPUTE_SECRET_KEY
+
+
 usage: create_report.py [-h] [-t {deployed,registry,ci}] [-f {pdf,html}] [-d] [-s] [-vo] [-co]
 
 Create Compute Reports
