@@ -150,6 +150,10 @@
     background-color: #e6dd37;
 }
 
+.toc {
+    font-size: large;
+}
+
 a:link {
   color: #000000;
 }
@@ -164,4 +168,8 @@ a:hover {
 
 a:active {
   color: #000000;
+}
+
+hr {
+    border-top: 1px solid black;
 }
