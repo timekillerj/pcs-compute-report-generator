@@ -20,7 +20,7 @@ import pdfkit
 COMPUTE_API_ENDPOINT = os.environ.get('COMPUTE_API_ENDPOINT')
 COMPUTE_ACCESS_KEY = os.environ.get('COMPUTE_ACCESS_KEY')
 COMPUTE_SECRET_KEY = os.environ.get('COMPUTE_SECRET_KEY')
-API_VERSION = "api/v1"
+API_VERSION = "v1"
 VERIFY_SSL=False
 # Defaults to max 10,000 images
 IMAGE_TYPES = ['deployed', 'registry', 'ci']
