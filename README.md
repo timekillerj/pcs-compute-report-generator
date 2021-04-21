@@ -28,6 +28,13 @@ pip install -r requirements.txt
 
 Finally, you will need to install [wkhtmltopdf](https://wkhtmltopdf.org/downloads.html) for your platform.
 
+## Environment Variables
+To fun reports with this script you will need 3 environment variables:
+
+| COMPUTE_API_ENDPOINT | The api endpoint of your Compute instance |
+| COMPUTE_ACCESS_KEY | Your username for the instance |
+| COMPUTE_SECRET_KEY | Your password |
+
 ## Usage
 ```
 usage: create_report.py [-h] [-t {deployed,registry,ci}] [-f {pdf,html}] [-d] [-s] [-vo] [-co]
