@@ -1,8 +1,11 @@
+.cover-page-main {
+    background-color: #33393f;
+    margin: 0px;
+}
 .cover-page-image {
     background-image: url("../images/cover.png");
     background-repeat: no-repeat;
     background-size: cover;
-    margin:0;
     padding:0;
     height: 1000px;
     width: 100%;
@@ -12,9 +15,6 @@
 
 .cover-page-meta {
     background-color: #33393f;
-    height: 1000px;
-    width: 100%;
-    margin:0;
     padding: 30px;
 }
 
@@ -43,7 +43,9 @@
 
 .cover-info {
     color: #ffffff;
-    font-size: 25px;
+    font-size: 35px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .section-title {

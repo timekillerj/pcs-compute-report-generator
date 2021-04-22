@@ -7,7 +7,7 @@ import sys
 import requests
 from requests.exceptions import RequestException
 import json
-import datetime
+import datetime, time
 from pathlib import Path
 import shutil
 import io
@@ -228,7 +228,7 @@ def generate_pie_chart(chart, data):
 
     if invalid:
         # We want at least one non zero value
-        return None
+        return 'static/images/none-chart.png'
 
     explode = (0, 0, 0, 0)
     colors = ["#90251c", "#dd3d2d", "#ea9a33", "#e6dd37"]
@@ -253,6 +253,7 @@ def generate_html_files(html):
 
 def generate_html(
     env,
+    image_type,
     images,
     vulnerability_count,
     compliance_issue_count,
@@ -261,7 +262,7 @@ def generate_html(
     summary,
     vulnerabilities_only,
     compliance_only):
-    today = datetime.date.today()
+    timestamp = time.strftime("%Y-%m-%d at %H:%M:%S", time.localtime())
     template = env.get_template("base.html")
     vuln_severity_count, vuln_list = generate_vuln_summary(images, vulnerabilities)
     comp_severity_count, comp_list = generate_comp_summary(images, compliance_issues)
@@ -269,8 +270,10 @@ def generate_html(
     comp_dist_chart = generate_pie_chart('comp', comp_severity_count)
     html = template.render(
         templates_dir=TEMPLATES_DIR,
+        image_type=image_type,
         resource_count=len(images),
-        today=today,
+        timestamp=timestamp,
+        console_address=COMPUTE_CONSOLE_ADDRESS,
         vulnerability_count=vulnerability_count,
         compliance_issue_count=compliance_issue_count,
         vuln_dist_chart=vuln_dist_chart,
@@ -327,6 +330,7 @@ def main(image_type, file_format, summary, vulnerabilities_only, compliance_only
 
     html = generate_html(
         env,
+        image_type,
         images,
         vulnerability_count,
         compliance_issue_count,
