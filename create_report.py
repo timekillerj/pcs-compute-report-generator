@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 from jinja2 import Environment, FileSystemLoader
 import pdfkit
 
-COMPUTE_API_ENDPOINT = os.environ.get('COMPUTE_API_ENDPOINT')
+COMPUTE_CONSOLE_ADDRESS = os.environ.get('COMPUTE_CONSOLE_ADDRESS')
 COMPUTE_ACCESS_KEY = os.environ.get('COMPUTE_ACCESS_KEY')
 COMPUTE_SECRET_KEY = os.environ.get('COMPUTE_SECRET_KEY')
 API_VERSION = "v1"
@@ -67,7 +67,7 @@ def compute_login():
         "username": COMPUTE_ACCESS_KEY,
         "password": COMPUTE_SECRET_KEY
     })
-    login_response = make_api_call('POST', f'{COMPUTE_API_ENDPOINT}/{API_VERSION}/authenticate', login_creds)
+    login_response = make_api_call('POST', f'{COMPUTE_CONSOLE_ADDRESS}/api/{API_VERSION}/authenticate', login_creds)
     logging.debug(f'login_response: {login_response}')
     response = json.loads(login_response)
     return response.get('token')
@@ -93,7 +93,7 @@ def get_images(token, image_type):
         if image_type == "ci":
             params['type'] = "ciImage"
 
-        images_response = make_api_call('GET', f'{COMPUTE_API_ENDPOINT}/{API_VERSION}/{endpoint}', params=params)
+        images_response = make_api_call('GET', f'{COMPUTE_CONSOLE_ADDRESS}/api/{API_VERSION}/{endpoint}', params=params)
         # logging.debug(f'images_response: {images_response}')
         try:
             images = json.loads(images_response)
@@ -161,11 +161,11 @@ def generate_vuln_summary(images, vulnerabilities):
         else:
             unkown_vuln.append(vulnerability)        
 
-    crit_vuln.sort(key=lambda x: x['percentage_failed'], reverse=True)
-    high_vuln.sort(key=lambda x: x['percentage_failed'], reverse=True)
-    med_vuln.sort(key=lambda x: x['percentage_failed'], reverse=True)
-    low_vuln.sort(key=lambda x: x['percentage_failed'], reverse=True)
-    unkown_vuln.sort(key=lambda x: x['percentage_failed'], reverse=True)
+    crit_vuln.sort(key=lambda x: len(x['failed_resources']), reverse=True)
+    high_vuln.sort(key=lambda x: len(x['failed_resources']), reverse=True)
+    med_vuln.sort(key=lambda x: len(x['failed_resources']), reverse=True)
+    low_vuln.sort(key=lambda x: len(x['failed_resources']), reverse=True)
+    unkown_vuln.sort(key=lambda x: len(x['failed_resources']), reverse=True)
 
     severity_count = {
         "critical": len(crit_vuln),
@@ -200,11 +200,11 @@ def generate_comp_summary(images, compliance_issues):
         else:
             unkown_comp.append(compliance_issue)
 
-    crit_comp.sort(key=lambda x: x['percentage_failed'], reverse=True)
-    high_comp.sort(key=lambda x: x['percentage_failed'], reverse=True)
-    med_comp.sort(key=lambda x: x['percentage_failed'], reverse=True)
-    low_comp.sort(key=lambda x: x['percentage_failed'], reverse=True)
-    unkown_comp.sort(key=lambda x: x['percentage_failed'], reverse=True)
+    crit_comp.sort(key=lambda x: len(x['failed_resources']), reverse=True)
+    high_comp.sort(key=lambda x: len(x['failed_resources']), reverse=True)
+    med_comp.sort(key=lambda x: len(x['failed_resources']), reverse=True)
+    low_comp.sort(key=lambda x: len(x['failed_resources']), reverse=True)
+    unkown_comp.sort(key=lambda x: len(x['failed_resources']), reverse=True)
 
     severity_count = {
         "critical": len(crit_comp),
