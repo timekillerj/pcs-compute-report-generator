@@ -1,3 +1,13 @@
+body {
+    display: block;
+    margin: 0px;
+}
+
+.main {
+    width: 1500px;
+    margin: auto;
+}
+
 .cover-page-main {
     background-color: #33393f;
     margin: 0px;
@@ -154,6 +164,7 @@
 
 .toc {
     font-size: large;
+    padding: 10px;
 }
 
 a:link {
