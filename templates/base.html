@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ templates_dir }}/static/css/main.css">
 </head>
 <body>
+    <div class="main">
     {% include "cover.html" %}
     {% include "toc.html" %}
     {% include "executive_summary.html" %}
@@ -22,5 +23,6 @@
             {% include "comp_details.html" %}
         {% endif %}
     {% endif %}
+    </div>
 </body>
 </html>
